@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Pessoa } from '../pessoa';
+import { TipoPessoa } from '../tipo-pessoa';
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -10,6 +12,7 @@ export class CadastroClienteComponent implements OnInit {
   cliente: string = "Proprietário";
   contador: number = 0;
   imagem: string;
+  pessoa: Pessoa;
 
   constructor() { }
 
@@ -30,6 +33,12 @@ export class CadastroClienteComponent implements OnInit {
       }
 
     },2000);
+
+    if (this.pessoa == null){
+      this.pessoa = new Pessoa();
+      this.pessoa.nomePessoa = "Perfeito";
+      this.pessoa.tipoPessoa = TipoPessoa.Juridica;
+    }
 
   }
 
