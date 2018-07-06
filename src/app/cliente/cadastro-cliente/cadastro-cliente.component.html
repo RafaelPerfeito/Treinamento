@@ -33,7 +33,11 @@
         teste ngContent
       </lx-modal>
     </div>
-    <div class ="col-12">
+    <div lxCol tamanho="12">
+      <lx-progress 
+        [valueNow]="porcentagemProgresso"
+        [fecharAoConcluir]="true"></lx-progress>
+      <button class="btn btn-primary" (click)="adicionarCliente()">Adicionar cliente</button>
       <table class="table table-hover table-striped">
         <thead>
           <tr>

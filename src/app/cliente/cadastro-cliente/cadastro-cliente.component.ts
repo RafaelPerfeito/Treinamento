@@ -15,6 +15,7 @@ export class CadastroClienteComponent implements OnInit {
   imagem: string;
   pessoa: Pessoa;
   pessoas: Pessoa[];
+  porcentagemProgresso: number = 0;
 
   constructor(private svcCliente: ClienteService) { }
 
@@ -44,14 +45,33 @@ export class CadastroClienteComponent implements OnInit {
 
     let servicoClientes = this.svcCliente.getClientes();
 
+    this.porcentagemProgresso = 50;
+
     servicoClientes.subscribe( res => {
       this.pessoas = res;
-    }) ;
+      this.porcentagemProgresso = 100;
+    }) ;    
+
+    if (this.pessoas == null){
+      this.pessoas = [];
+    }
 
   }
 
   levantarNeymar() : void {
     this.imagem = "assets/neymar_em_pe.jpg"
+  }
+
+  adicionarCliente(){
+    let pessoa : Pessoa = {
+      nomePessoa : "Neymar",
+      tipoPessoa : TipoPessoa.Juridica
+    }
+    this.pessoas.push(pessoa);
+
+    this.svcCliente.addCliente(pessoa).subscribe(res =>{
+      console.log(res);
+    })
   }
 
 }

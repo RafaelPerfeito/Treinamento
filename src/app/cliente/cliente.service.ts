@@ -8,9 +8,15 @@ import { Pessoa } from './pessoa';
 })
 export class ClienteService {
 
+  readonly url : string = 'https://treinamento-505d8.firebaseio.com/lista.json';
+
   constructor(private http: HttpClient) { }
 
   getClientes() : Observable<Pessoa[]>{
-    return this.http.get<Pessoa[]>('https://treinamento-505d8.firebaseio.com/lista.json');
+    return this.http.get<Pessoa[]>(this.url);
   }
+
+  addCliente(cliente : Pessoa){
+    return this.http.post(this.url, cliente);
+  }  
 }

@@ -11,6 +11,9 @@ import { LxTextoComponent } from './lx-texto/lx-texto.component';
 import { LxModalComponent } from './lx-modal/lx-modal.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LxProgressComponent } from './lx-progress/lx-progress.component';
+import { LxColDirective } from './lx-col.directive';
+
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -20,13 +23,21 @@ import { LxProgressComponent } from './lx-progress/lx-progress.component';
     TipoClienteComponent,
     LxTextoComponent,
     LxModalComponent,
-    LxProgressComponent
+    LxProgressComponent,
+    LxColDirective
     
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      { path: 
+        "cadastro-cliente",
+        component : 
+        CadastroClienteComponent
+      }
+    ])
     
   ],
   providers: [
