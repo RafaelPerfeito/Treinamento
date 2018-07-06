@@ -1,13 +1,59 @@
-<p>
-  <span *ngIf="pessoa.tipoPessoa == 1">{{ cliente }} </span>
-  <app-tipo-pessoa [(tipoPessoa)]="pessoa.tipoPessoa"></app-tipo-pessoa>
-  <app-tipo-cliente></app-tipo-cliente>
-  <!--
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <fieldset>
+        <legend>Cliente</legend>
+        <span *ngIf="pessoa.tipoPessoa == 1">{{ cliente }} </span>
+      </fieldset>
+    </div>
+    <div class="col">
+      <fieldset>
+        <legend>Tipo Pessoa</legend>
+        <app-tipo-pessoa [(tipoPessoa)]="pessoa.tipoPessoa"></app-tipo-pessoa>
+      </fieldset>        
+    </div>
+    <div class="col">
+      <div>Tipo de Cliente</div>
+      <app-tipo-cliente></app-tipo-cliente>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2">
+      <label>
+          Código do Cliente
+          <input type="number" class="form-control"/>
+      </label>  
+    </div>
+    <div class="col-9"><lx-texto [(texto)]="pessoa.nomePessoa" label="Nome do Cliente" ></lx-texto></div>
+    <div class="col-1" style="font-size: 48px">
+      <lx-modal titulo="Opções" 
+                icone="icon-lx-user" 
+                textoBotaoNegativo="Fechar" 
+                textoBotaoPositivo="Salvar">
+        teste ngContent
+      </lx-modal>
+    </div>
+    <div class ="col-12">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>Tipo Pessoa</th>
+            <th>Nome</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let auxPessoa of pessoas">
+              <td>{{auxPessoa.tipoPessoa}}</td>
+              <td>{{auxPessoa.nomePessoa}}</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>  
+</div>
+<!--
   <img [src]="imagem" [hidden]="imagem ==null"/>
   <button (click)="levantarNeymar()">Levantar o Neymar</button>
   <input type="text" [(ngModel)]="imagem"/>
   -->
-  <input type="text" [(ngModel)]="pessoa.nomePessoa"/>
-</p>
-
-{{ pessoa | json }}
+<input type="text" [(ngModel)]="pessoa.nomePessoa" /> {{ pessoa | json }}

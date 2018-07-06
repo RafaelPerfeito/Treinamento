@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pessoa } from '../pessoa';
 import { TipoPessoa } from '../tipo-pessoa';
+import { ClienteService } from '../cliente.service';
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -13,8 +14,9 @@ export class CadastroClienteComponent implements OnInit {
   contador: number = 0;
   imagem: string;
   pessoa: Pessoa;
+  pessoas: Pessoa[];
 
-  constructor() { }
+  constructor(private svcCliente: ClienteService) { }
 
   ngOnInit() {
     let self = this;
@@ -39,6 +41,12 @@ export class CadastroClienteComponent implements OnInit {
       this.pessoa.nomePessoa = "Perfeito";
       this.pessoa.tipoPessoa = TipoPessoa.Juridica;
     }
+
+    let servicoClientes = this.svcCliente.getClientes();
+
+    servicoClientes.subscribe( res => {
+      this.pessoas = res;
+    }) ;
 
   }
 
